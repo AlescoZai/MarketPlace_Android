@@ -39,7 +39,7 @@ public class WhatToBuy extends AppCompatActivity{
         //Initialize the butterknife
         ButterKnife.bind(this);
 
-        //IMplement Array adapter
+        //Implement Array adapter
         HubBusinessAdapter adapter = new HubBusinessAdapter(this, android.R.layout.simple_list_item_1, BucketList, Whathaves);
         myList.setAdapter(adapter);
 
