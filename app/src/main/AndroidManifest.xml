@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -24,6 +24,9 @@
                 android:value="com.example.dennis.marketplace.MainActivity"></meta-data>
         </activity>
         <activity android:name=".Specific">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dennis.marketplace.WhatToBuy"></meta-data>
         </activity>
     </application>
 

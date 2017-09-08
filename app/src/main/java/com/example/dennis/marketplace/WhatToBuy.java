@@ -26,6 +26,7 @@ public class WhatToBuy extends AppCompatActivity{
             "Trousers", "Jackets", "Toothpaste", "Laptops",
             "Mousse", "FUll Grid", "Glasses",
             "Muturas", "Subway footlongs", "Muturas", "Subway footlongs"};
+    //This is another array where we will create a custom adpter that will sync together with the array above
     private String[] Whathaves = new String[] {"40 clas", "4% alcoholic percentage", "6% alcoholic percentage",
             "Sweet",
             "NIcest yoghurt ever tasted", "NIce ball", "size 36", "Large",
@@ -52,8 +53,9 @@ public class WhatToBuy extends AppCompatActivity{
               startActivity(intent);
           }
       });
+        //Here is where the text is gotten from the intent
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        thisText.setText(name);
+        thisText.setText("Hello" + name);
     }
 }
