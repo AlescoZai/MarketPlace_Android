@@ -14,5 +14,24 @@
     android:scaleType="centerCrop">
 
 </ImageView>
+    <EditText
+        android:id="@+id/myText"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="300dp"
+        android:shadowColor="@color/white"
+        android:textColor="@color/white">
+
+    </EditText>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button_states"
+        android:text="Submit"
+        android:id="@+id/btn_scan_qr"
+        android:textSize="15dp"
+        android:layout_below="@+id/myText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>
