@@ -3,6 +3,7 @@ package com.example.dennis.marketplace;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +33,10 @@ public class WhatToBuy extends AppCompatActivity{
 
         //Initialize the butterknife
         ButterKnife.bind(this);
+
+        //IMplement Array adapter
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, BucketList);
+        myList.setAdapter(adapter);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
