@@ -3,11 +3,19 @@ package com.example.dennis.marketplace;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
+
 
 /**
  * Created by dennis on 9/8/17.
@@ -39,22 +47,33 @@ public class WhatToBuy extends AppCompatActivity{
         //Initialize the butterknife
         ButterKnife.bind(this);
 
-        //Implement Array adapter
-       /* HubBusinessAdapter adapter = new HubBusinessAdapter(this, android.R.layout.simple_list_item_1, BucketList, Whathaves);
-        myList.setAdapter(adapter);
-
-      myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-          @Override
-          public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-              String bucket = ((TextView)view).getText().toString();
-              Intent intent = new Intent(WhatToBuy.this, Specific.class);
-              intent.putExtra("bucket", bucket);
-              startActivity(intent);
-          }
-      });*/
         //Here is where the text is gotten from the intent
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         thisText.setText("Hello" + name);
+        getItems(name);
+    }
+    //Now this method is for getting the items and showing if there is anything passed
+    public void getItems(String item){
+        final MarketService marketService = new MarketService();
+        MarketService.findItem(item, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                try {
+                    String jsonData = response.body().string();
+                    Log.v(TAG, jsonData);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
     }
 }

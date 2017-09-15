@@ -1,8 +1,8 @@
 package com.example.dennis.marketplace;
 
-import javax.security.auth.callback.Callback;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,7 +27,7 @@ public class MarketService {
                 .url(url)
                 .build();
         Call call = client.newCall(request);
-        call.enqueue((okhttp3.Callback) callback);
+        call.enqueue(callback);
 
     }
 
