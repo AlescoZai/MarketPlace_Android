@@ -1,4 +1,4 @@
-package com.example.dennis.marketplace;
+package com.example.dennis.marketplace.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.dennis.marketplace.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

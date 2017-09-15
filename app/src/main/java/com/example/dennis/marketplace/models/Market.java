@@ -1,4 +1,4 @@
-package com.example.dennis.marketplace;
+package com.example.dennis.marketplace.models;
 
 /**
  * Created by dennis on 9/15/17.

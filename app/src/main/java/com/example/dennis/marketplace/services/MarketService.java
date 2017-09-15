@@ -1,5 +1,8 @@
-package com.example.dennis.marketplace;
+package com.example.dennis.marketplace.services;
 
+
+import com.example.dennis.marketplace.Constants;
+import com.example.dennis.marketplace.models.Market;
 
 import org.json.JSONArray;
 import org.json.JSONException;

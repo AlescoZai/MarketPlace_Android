@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.WhatToBuy">
 
     <TextView
         android:layout_height="wrap_content"
@@ -11,14 +13,10 @@
         android:textSize="20sp"
         android:textColor="@color/Black">
     </TextView>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/thisList"
-        android:layout_below="@+id/myText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
 
-    </ListView>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
 
 </RelativeLayout>
