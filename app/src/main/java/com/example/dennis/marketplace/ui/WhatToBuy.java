@@ -3,12 +3,12 @@ package com.example.dennis.marketplace.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.dennis.marketplace.R;
+import com.example.dennis.marketplace.adapters.MarketListAdapter;
 import com.example.dennis.marketplace.models.Market;
 import com.example.dennis.marketplace.services.MarketService;
 
@@ -29,9 +29,13 @@ import okhttp3.Response;
 
 public class WhatToBuy extends AppCompatActivity{
     public static final String TAG = WhatToBuy.class.getSimpleName();
+
+    //Call on the recycler view
+    @Bind(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+    private MarketListAdapter mAdapter;
 //Lets Create some butterknife
     @Bind(R.id.myText) TextView thisText;
-    @Bind(R.id.thisList) ListView myList;
 
     //Arraylist for the items
     public ArrayList<Market> mMarket = new ArrayList<>();
@@ -81,28 +85,18 @@ public class WhatToBuy extends AppCompatActivity{
                 WhatToBuy.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String[] itemNames = new String[mMarket.size()];
-
-                        //Initialize For loop
-                        for (int i =0; i < itemNames.length; i++){
-                            itemNames[i] = mMarket.get(i).getName();
-                        }
-                        //New array adapter
-                        ArrayAdapter adapter = new ArrayAdapter(WhatToBuy.this,
-                                android.R.layout.simple_list_item_1, itemNames);
-                        myList.setAdapter(adapter);
-                        //This is
-                        for (Market restaurant : mMarket) {
-                            Log.d(TAG, "name: " + restaurant.getName());
-                            Log.d(TAG, "salePrice: " + restaurant.getSalePrice());
-                            Log.d(TAG, "image: " + restaurant.getImage());
-                            Log.d(TAG, "stock: " + restaurant.getStock());
+                        mAdapter = new MarketListAdapter(getApplicationContext(), mMarket);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(WhatToBuy.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
 
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
+        }
 
     }
-}
+

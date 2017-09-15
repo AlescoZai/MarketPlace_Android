@@ -56,6 +56,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
         @Bind(R.id.itemNameTextView) TextView mNameTextView;
         @Bind(R.id.priceTextView)
         TextView mPriceTextView;
+        @Bind(R.id.stockTextView) TextView stocks;
         private Context mContext;
 
         public MarketViewHolder(View itemView) {
@@ -67,7 +68,8 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
         public void bindMarket(Market market) {
             mNameTextView.setText(market.getName());
             Picasso.with(mContext).load(market.getImage()).into(mImageView);
-            mPriceTextView.setText("Amount KES: " + market.getSalePrice() + "/100");
+            mPriceTextView.setText("Amount $: " + market.getSalePrice());
+            stocks.setText(market.getStock());
         }
     }
 

@@ -58,7 +58,7 @@ public class MarketService {
                     String stock = itemJSON.getString("stock");
 
 
-                    Market market = new Market(name, image, salePrice, stock);
+                    Market market = new Market(image, salePrice, name, stock);
                     markets.add(market);
                 }
             }
