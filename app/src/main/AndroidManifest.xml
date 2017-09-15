@@ -24,11 +24,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dennis.marketplace.MainActivity"></meta-data>
         </activity>
-        <activity android:name=".Specific">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dennis.marketplace.WhatToBuy"></meta-data>
-        </activity>
     </application>
 
 </manifest>
