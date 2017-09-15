@@ -3,8 +3,6 @@ package com.example.dennis.marketplace;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +19,7 @@ public class WhatToBuy extends AppCompatActivity{
     @Bind(R.id.myText) TextView thisText;
     @Bind(R.id.thisList) ListView myList;
     //Lets declare the arrays for the commodies
+    /*
     private String[] BucketList = new String[] {"Bread", "Tusker",
             "Guiness", "Cakes", "Delamere", "BasketBall",
             "Trousers", "Jackets", "Toothpaste", "Laptops",
@@ -31,7 +30,7 @@ public class WhatToBuy extends AppCompatActivity{
             "Sweet",
             "NIcest yoghurt ever tasted", "NIce ball", "size 36", "Large",
             "Colgate", "Apple", "Azela", "Cuban", "Gucci", "nice", "Breakfast"};
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -41,7 +40,7 @@ public class WhatToBuy extends AppCompatActivity{
         ButterKnife.bind(this);
 
         //Implement Array adapter
-        HubBusinessAdapter adapter = new HubBusinessAdapter(this, android.R.layout.simple_list_item_1, BucketList, Whathaves);
+       /* HubBusinessAdapter adapter = new HubBusinessAdapter(this, android.R.layout.simple_list_item_1, BucketList, Whathaves);
         myList.setAdapter(adapter);
 
       myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,7 +51,7 @@ public class WhatToBuy extends AppCompatActivity{
               intent.putExtra("bucket", bucket);
               startActivity(intent);
           }
-      });
+      });*/
         //Here is where the text is gotten from the intent
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
