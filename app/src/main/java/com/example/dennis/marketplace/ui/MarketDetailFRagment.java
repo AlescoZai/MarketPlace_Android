@@ -17,30 +17,19 @@ import org.parceler.Parcels;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link MarketDetailFRagment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MarketDetailFRagment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    @Bind(R.id.ImageView)
-    ImageView mImageLabel;
+    @Bind(R.id.ImageView) ImageView mImageLabel;
     @Bind(R.id.NameTextView) TextView mNameLabel;
-    @Bind(R.id.PriceTextView)
-    TextView mPrice;
+    @Bind(R.id.PriceTextView) TextView mPrice;
     @Bind(R.id.StockTextView) TextView mStockLabel;
 
 
     private Market mMarket;
 
 
-    // TODO: Rename and change types and number of parameters
-    public static MarketDetailFragment newInstance(Market market) {
-        MarketDetailFragment marketDetailFragment = new MarketDetailFragmentt();
+    public static MarketDetailFRagment newInstance(Market market) {
+        MarketDetailFRagment marketDetailFragment = new MarketDetailFRagment();
         Bundle args = new Bundle();
         args.putParcelable("market", Parcels.wrap(market));
         marketDetailFragment.setArguments(args);

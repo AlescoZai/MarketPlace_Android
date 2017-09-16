@@ -1,9 +1,11 @@
 package com.example.dennis.marketplace.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by dennis on 9/15/17.
  */
-
+@Parcel
 public class Market {
     //Pass the parameters that we will use
     private String mImage;
@@ -11,6 +13,7 @@ public class Market {
     private String mName;
     private String mStock;
     //Now lets pass a Constructor
+    public Market() {}
 
     public Market(String image, String saleprice, String name, String stock){
         this.mImage = image;

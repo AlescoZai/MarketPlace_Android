@@ -1,6 +1,7 @@
 package com.example.dennis.marketplace.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import com.example.dennis.marketplace.R;
 import com.example.dennis.marketplace.models.Market;
+import com.example.dennis.marketplace.ui.MarketDetailActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -50,7 +54,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
     }
 
 
-    public class MarketViewHolder extends RecyclerView.ViewHolder {
+    public class MarketViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @Bind(R.id.itemImageView)
         ImageView mImageView;
         @Bind(R.id.itemNameTextView) TextView mNameTextView;
@@ -63,6 +67,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindMarket(Market market) {
@@ -70,6 +75,15 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
             Picasso.with(mContext).load(market.getImage()).into(mImageView);
             mPriceTextView.setText("Amount $: " + market.getSalePrice());
             stocks.setText(market.getStock());
+        }
+
+        @Override
+        public void onClick(View view) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, MarketDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("markets", Parcels.wrap(mMarket));
+            mContext.startActivity(intent);
         }
     }
 
