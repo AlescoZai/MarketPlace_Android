@@ -26,6 +26,9 @@
                 android:value="com.example.dennis.marketplace.ui.MainActivity" />
         </activity>
         <activity android:name=".ui.MarketDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dennis.marketplace.ui.MainActivity"/>
         </activity>
     </application>
 
