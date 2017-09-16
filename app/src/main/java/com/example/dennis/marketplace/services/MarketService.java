@@ -54,6 +54,7 @@ public class MarketService {
 
                     String image = itemJSON.getString("largeImage");
                     String salePrice = itemJSON.getString("salePrice");
+
                     String name = itemJSON.getString("name");
                     String stock = itemJSON.getString("stock");
 
