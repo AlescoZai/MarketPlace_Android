@@ -11,4 +11,5 @@ public class Constants {
     public static final String API_BASE_QUERY = "query";
     public static final String API_KEY_HOLDER = "apiKey";
     public static final String API_BASE_FORMAT = "format";
+    public static final String FIREBASE_CHILD_SEARCHED_ITEM = "savedcommodities";
 }

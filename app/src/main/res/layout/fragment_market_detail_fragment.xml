@@ -6,39 +6,33 @@
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/ImageView"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/largepng"
-        android:scaleType="centerCrop"
-        android:visibility="visible"/>
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="20dp">
+
+        <ImageView
+            android:id="@+id/ImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="90dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/largepng"
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/NameTextView"
-            android:layout_width="wrap_content"
+            android:id="@+id/websiteTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Item Name"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
+            android:layout_below="@+id/ImageView"
+            android:layout_marginBottom="10dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="View on Walmart"
+            android:textSize="15sp"
             android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/PriceTextView"
@@ -46,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/NameTextView"
-            android:text="4.5/5"
+            android:layout_alignTop="@+id/websiteTextView"
+            android:text="$"
             android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
@@ -57,315 +51,78 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/NameTextView"
+            android:layout_below="@+id/PriceTextView"
             android:text="Brunch, American"
             android:textStyle="italic" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/phoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+
+            android:text="(503) 223-1282"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp">
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/saveRestaurantButton"
-            android:paddingLeft="30dp"
-            android:paddingTop="20dp"
-            android:paddingRight="30dp">
+            android:layout_alignParentStart="true">
 
             <TextView
+                android:id="@+id/NameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View on Walmart"
-                android:id="@+id/websiteTextView"
-                android:drawablePadding="4dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:gravity="center" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
 
-            <TextView
-                android:layout_width="wrap_content"
+                android:text="Item Name"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="(503) 223-1282"
-                android:id="@+id/phoneTextView"
-                android:drawablePadding="4dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"/>
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/saveRestaurantButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product"
-                android:drawablePadding="4dp"
-                android:id="@+id/addressTextView"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical"/>
-
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Buy THis Stuff"
-            android:id="@+id/saveRestaurantButton"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorAccent"
-            android:textSize="15sp" />
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorAccent"
+                android:text="Buy This Stuff"
+                android:textSize="15sp" />
+        </RelativeLayout>
     </RelativeLayout>
-    </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </FrameLayout>

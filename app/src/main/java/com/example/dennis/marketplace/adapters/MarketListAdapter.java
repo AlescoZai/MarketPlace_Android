@@ -57,6 +57,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
     public class MarketViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @Bind(R.id.itemImageView)
         ImageView mImageView;
+
         @Bind(R.id.itemNameTextView) TextView mNameTextView;
         @Bind(R.id.priceTextView)
         TextView mPriceTextView;

@@ -12,6 +12,10 @@ public class Market {
     private String mSaleprice;
     private String mName;
     private String mStock;
+    /*
+    private String mUrl;
+    private String mAddToCart;
+    */
     //Now lets pass a Constructor
     public Market() {}
 
@@ -20,6 +24,10 @@ public class Market {
         this.mSaleprice = saleprice;
         this.mName = name;
         this.mStock = stock;
+        /*
+        this.mUrl = url;
+        this.mAddToCart = addToCart;
+        */
     }
     public String getImage(){
         return mImage;
@@ -33,4 +41,8 @@ public class Market {
     public String getStock(){
         return mStock;
     }
-}
+    /*
+    public String getUrl(){ return mUrl;}
+    public  String getmAddToCart(){ return mAddToCart;}
+
+*/}

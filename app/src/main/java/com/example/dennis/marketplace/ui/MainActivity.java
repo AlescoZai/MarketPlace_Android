@@ -9,21 +9,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.dennis.marketplace.Constants;
 import com.example.dennis.marketplace.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     //Lets declare some variables
-
+    private DatabaseReference mSearcheditemReference;
     //This is butterknife
     @Bind(R.id.btn) Button myButton;
     @Bind(R.id.myname) EditText myEditText;
     @Bind(R.id.thisText) TextView myText;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Declare the searched item
+        mSearcheditemReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_ITEM);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //IMplement butterknife
@@ -44,5 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+//This is supposed to set the value in our firebase
+    public void saveCommoditiesToFirebase(String item) {
+        mSearcheditemReference.setValue(item);
     }
 }
