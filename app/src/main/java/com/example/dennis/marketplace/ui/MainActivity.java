@@ -18,7 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    //Lets declare some variables
+    //Now lets create a database reference
     private DatabaseReference mSearcheditemReference;
     //This is butterknife
     @Bind(R.id.btn) Button myButton;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Declare the searched item
+        //Parse the searched item as an argument
         mSearcheditemReference = FirebaseDatabase
                 .getInstance()
                 .getReference()
@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = myEditText.getText().toString();
+                //This is supposed to save our stuff in the firebase
+                saveCommoditiesToFirebase(name);
                 Intent intent = new Intent(MainActivity.this, WhatToBuy.class);
                 intent.putExtra("name", name);
                 startActivity(intent);
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 //This is supposed to set the value in our firebase
-    public void saveCommoditiesToFirebase(String item) {
-        mSearcheditemReference.setValue(item);
+    public void saveCommoditiesToFirebase(String name) {
+        mSearcheditemReference.setValue(name);
     }
 }
