@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.dennis.marketplace.ui.CreateAccountActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_verified_user_black_24dp"
+            android:id="@+id/imageView"
+            ></ImageView>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Be a verified User"
+            android:textSize="20dp"></TextView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:padding="20dp"
+            android:id="@+id/edittextname"
+            ></EditText>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_below="@+id/edittextname"
+            android:padding="20dp"
+            android:id="@+id/editemail"
+            ></EditText>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:layout_below="@+id/editemail"
+            android:padding="20dp"
+            android:id="@+id/editpass"
+            ></EditText>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:layout_below="@+id/editpass"
+            android:padding="20dp"
+            android:id="@+id/editpass2"
+            ></EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or you already have an account? Log In"
+            android:id="@+id/logInActivity"
+            android:layout_below="@+id/editpass2"
+            android:layout_centerHorizontal="true"></TextView>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:elevation="1dp"
+            android:text="submit"
+            android:layout_below="@+id/editpass2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:id="@+id/submit"
+            android:translationZ="1dp"
+            android:padding="0dp"></Button>
+    </RelativeLayout>
+
+</RelativeLayout>
