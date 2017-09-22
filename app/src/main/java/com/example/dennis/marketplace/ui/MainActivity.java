@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.btn) Button myButton;
     @Bind(R.id.myname) EditText myEditText;
     @Bind(R.id.thisText) TextView myText;
+    @Bind(R.id.saved)Button saveButton;
 
 
 
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Set an onclick listener
         myButton.setOnClickListener(this);
+        saveButton.setOnClickListener(this);
     }
 //This is supposed to set the value in our firebase
     public void saveCommoditiesToFirebase(String name) {
@@ -84,6 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             saveCommoditiesToFirebase(name);
             Intent intent = new Intent(MainActivity.this, WhatToBuy.class);
             intent.putExtra("name", name);
+            startActivity(intent);
+        }
+        if (view == saveButton){
+            Intent intent = new Intent(MainActivity.this, SavedItemListActivity.class);
             startActivity(intent);
         }
 

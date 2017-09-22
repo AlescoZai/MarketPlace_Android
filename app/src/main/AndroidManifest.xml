@@ -19,7 +19,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ui.WhatToBuy">
             <meta-data
@@ -32,10 +31,10 @@
                 android:value="com.example.dennis.marketplace.ui.MainActivity" />
         </activity>
         <activity android:name=".ui.CreateAccountActivity">
-
         </activity>
         <activity android:name=".ui.LogIn">
-
+        </activity>
+        <activity android:name=".ui.SavedItemListActivity">
         </activity>
     </application>
 
