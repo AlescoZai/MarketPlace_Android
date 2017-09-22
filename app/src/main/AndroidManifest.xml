@@ -15,6 +15,7 @@
             android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
 
+
         </activity>
         <activity android:name=".ui.WhatToBuy">
             <meta-data

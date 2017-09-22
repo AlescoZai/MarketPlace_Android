@@ -10,7 +10,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:src="@drawable/mike"
-    android:scaleType="centerCrop">
+    android:scaleType="centerCrop"
+    tools:ignore="ContentDescription">
 
 </ImageView>
     <TextView
@@ -21,16 +22,21 @@
         android:layout_width="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp">
+        android:textSize="40sp"
+        tools:ignore="HardcodedText">
 
     </TextView>
+
     <EditText
         android:id="@+id/myname"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
+        android:hint="Enter product name to search"
         android:shadowColor="@color/white"
-        android:textColor="@color/white">
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText">
 
     </EditText>
     <Button
@@ -42,6 +48,7 @@
         android:textSize="15dp"
         android:layout_marginTop="24dp"
         android:layout_below="@+id/myname"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText,SpUsage" />
 
 </RelativeLayout>

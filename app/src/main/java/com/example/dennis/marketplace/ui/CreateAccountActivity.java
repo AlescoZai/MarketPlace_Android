@@ -45,6 +45,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         //Implement the butterknife
         ButterKnife.bind(this);
 
+        mAuth = FirebaseAuth.getInstance();
+
         //Now this will be the method for creating the authentication listener
         createAuthStateListener();
 
@@ -70,7 +72,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         final String name = editName.getText().toString().trim();
         final String email = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
-        String password2 = editPassword2.getText().toString().trim();
+        String confirmPassword = editPassword2.getText().toString().trim();
+
+        boolean validEmail = isValidEmail(email);
+        boolean validName = isValidName(name);
+        boolean validPassword = isValidPassword(password, confirmPassword);
+        if (!validEmail || !validName || !validPassword) return;
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -100,7 +107,36 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         };
     }
+//Now lets check if the email and passwords are valid
 
+    public boolean isValidEmail(String email){
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            editEmail.setError("Please enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
+
+    private boolean isValidName(String name) {
+        if (name.equals("")) {
+            editName.setError("Please enter your name");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidPassword(String password, String confirmPassword) {
+        if (password.length() < 6) {
+            editPassword.setError("Please create a password containing at least 6 characters");
+            return false;
+        } else if (!password.equals(confirmPassword)) {
+            editPassword2.setError("Passwords do not match");
+            return false;
+        }
+        return true;
+    }
     //Now these methods will be for on create and on // STOPSHIP: 9/21/17
     @Override
     public void onStart() {
@@ -114,5 +150,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
-    }
+
+
+   }
+
 }
