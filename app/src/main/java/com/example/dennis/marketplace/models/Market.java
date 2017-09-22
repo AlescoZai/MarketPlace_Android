@@ -8,10 +8,10 @@ import org.parceler.Parcel;
 @Parcel
 public class Market {
     //Pass the parameters that we will use
-    private String mImage;
-    private String mSaleprice;
-    private String mName;
-    private String mStock;
+    private String image;
+    private String saleprice;
+    private String name;
+    private String stock;
     /*
     private String mUrl;
     private String mAddToCart;
@@ -20,26 +20,26 @@ public class Market {
     public Market() {}
 
     public Market(String image, String saleprice, String name, String stock){
-        this.mImage = image;
-        this.mSaleprice = saleprice;
-        this.mName = name;
-        this.mStock = stock;
+        this.image = image;
+        this.saleprice = saleprice;
+        this.name = name;
+        this.stock = stock;
         /*
         this.mUrl = url;
         this.mAddToCart = addToCart;
         */
     }
     public String getImage(){
-        return mImage;
+        return image;
     }
     public String getSalePrice(){
-        return mSaleprice;
+        return saleprice;
     }
     public String getName(){
-        return mName;
+        return name;
     }
     public String getStock(){
-        return mStock;
+        return stock;
     }
     /*
     public String getUrl(){ return mUrl;}

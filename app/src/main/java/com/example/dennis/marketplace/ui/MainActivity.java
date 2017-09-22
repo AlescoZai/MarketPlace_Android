@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,15 +12,21 @@ import android.widget.TextView;
 
 import com.example.dennis.marketplace.Constants;
 import com.example.dennis.marketplace.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     //Now lets create a database reference
     private DatabaseReference mSearcheditemReference;
+
+    //If the user exits the place he or she should do that with this
+    private ValueEventListener mSearchedItemReferenceListener;
     //This is butterknife
     @Bind(R.id.btn) Button myButton;
     @Bind(R.id.myname) EditText myEditText;
@@ -40,26 +47,51 @@ public class MainActivity extends AppCompatActivity {
         //IMplement butterknife
         ButterKnife.bind(this);
 
+        //Now lets add the search value event listener
+        mSearcheditemReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {//When something changes
+                for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
+                    String item = locationSnapshot.getValue().toString();
+                    Log.d("Items  updated", "item: " + item); //log
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         //Lets add a new font to make our app awesome
         myText = (TextView) findViewById(R.id.thisText);
         Typeface smiling = Typeface.createFromAsset(getAssets(),"fonts/Laughing and Smiling.ttf");
         myText.setTypeface(smiling);
 
         //Set an onclick listener
-        myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = myEditText.getText().toString();
-                //This is supposed to save our stuff in the firebase
-                saveCommoditiesToFirebase(name);
-                Intent intent = new Intent(MainActivity.this, WhatToBuy.class);
-                intent.putExtra("name", name);
-                startActivity(intent);
-            }
-        });
+        myButton.setOnClickListener(this);
     }
 //This is supposed to set the value in our firebase
     public void saveCommoditiesToFirebase(String name) {
-        mSearcheditemReference.setValue(name);
+        mSearcheditemReference.push().setValue(name);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == myButton){
+            String name = myEditText.getText().toString();
+            //This is supposed to save our stuff in the firebase
+            saveCommoditiesToFirebase(name);
+            Intent intent = new Intent(MainActivity.this, WhatToBuy.class);
+            intent.putExtra("name", name);
+            startActivity(intent);
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSearcheditemReference.removeEventListener(mSearchedItemReferenceListener);
     }
 }

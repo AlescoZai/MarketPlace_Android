@@ -1,5 +1,6 @@
 package com.example.dennis.marketplace.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static android.R.attr.name;
+
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
 
@@ -36,6 +39,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth mAuth;
     //This is for creating the authentication listener
     private FirebaseAuth.AuthStateListener mAuthListener;
+    //INcorporate progress dialog
+    private ProgressDialog mAuthProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,9 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         //Now this will be the method for creating the authentication listener
         createAuthStateListener();
+
+        //Lauch the method for progress dialog
+        createAuthProgressDialog();
 
         //Lets create an onclick listener for text
         login.setOnClickListener(this);
@@ -79,9 +87,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         boolean validPassword = isValidPassword(password, confirmPassword);
         if (!validEmail || !validName || !validPassword) return;
 
+        mAuthProgressDialog.show();
+
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                mAuthProgressDialog.dismiss();
                 if (task.isSuccessful()){
                     Log.d(TAG,"Authentication Successful");
                 }else{
@@ -89,6 +100,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 }
             }
         });
+    }
+    //Now lets incorporate the progress dialog
+
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Registering you" + name);
+        mAuthProgressDialog.setCancelable(false);
     }
 
     private void createAuthStateListener() {
