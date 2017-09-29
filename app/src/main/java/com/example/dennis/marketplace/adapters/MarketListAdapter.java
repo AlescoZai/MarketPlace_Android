@@ -72,10 +72,10 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Ma
         }
 
         public void bindMarket(Market market) {
-            mNameTextView.setText(market.getName());
+            mNameTextView.setText("Description: "+market.getName());
             Picasso.with(mContext).load(market.getImage()).into(mImageView);
             mPriceTextView.setText("Amount $: " + market.getSalePrice());
-            stocks.setText(market.getStock());
+            stocks.setText("Stock: "+market.getStock());
         }
 
         @Override

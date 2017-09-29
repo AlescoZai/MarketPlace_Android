@@ -12,6 +12,7 @@ public class Market {
     private String saleprice;
     private String name;
     private String stock;
+    private String pushId;
     /*
     private String mUrl;
     private String mAddToCart;
@@ -40,6 +41,14 @@ public class Market {
     }
     public String getStock(){
         return stock;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
     /*
     public String getUrl(){ return mUrl;}

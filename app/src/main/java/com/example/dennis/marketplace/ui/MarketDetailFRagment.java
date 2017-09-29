@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.dennis.marketplace.Constants;
 import com.example.dennis.marketplace.R;
 import com.example.dennis.marketplace.models.Market;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -41,8 +43,7 @@ public class MarketDetailFRagment extends Fragment implements View.OnClickListen
         marketDetailFragment.setArguments(args);
         return marketDetailFragment;
     }
-
-    /*
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class MarketDetailFRagment extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_market_detail_fragment, container, false);
         ButterKnife.bind(this, view);
+
         mMarket = Parcels.unwrap(getArguments().getParcelable("market"));
         Picasso.with(view.getContext()).load(mMarket.getImage()).into(mImageLabel);
 
@@ -70,9 +72,17 @@ public class MarketDetailFRagment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view == myButton){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference itemRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_ITEM);
+                    .getReference(Constants.FIREBASE_CHILD_ITEM)
+                    .child(uid);
+
+            DatabaseReference pushRef = itemRef.push();
+            String pushId = pushRef.getKey();
+            mMarket.setPushId(pushId);
+            pushRef.setValue(mMarket);
             itemRef.push().setValue(mMarket);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }

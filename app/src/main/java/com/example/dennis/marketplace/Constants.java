@@ -13,4 +13,8 @@ public class Constants {
     public static final String API_BASE_FORMAT = "format";
     public static final String FIREBASE_CHILD_SEARCHED_ITEM = "savedcommodities";
     public static final String FIREBASE_CHILD_ITEM = "items";
+
+    //This other variables will be for creating the value of the day
+    public static final String VALUE_BASE_URL = "http://api.walmartlabs.com/v1/vod?";
+    public static final String VALUE_FORMAT= "format";
 }

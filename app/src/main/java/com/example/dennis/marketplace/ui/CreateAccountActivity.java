@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,6 +27,8 @@ import static android.R.attr.name;
 
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
+
+    private String mName;
 
     //Now we implement the Binds
     @Bind(R.id.edittextname)EditText editName;
@@ -77,13 +80,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     }
 
     public void createNewUser(){
+        final String mName = editName.getText().toString().trim();
         final String name = editName.getText().toString().trim();
         final String email = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
         String confirmPassword = editPassword2.getText().toString().trim();
 
         boolean validEmail = isValidEmail(email);
-        boolean validName = isValidName(name);
+        boolean validName = isValidName(mName);
         boolean validPassword = isValidPassword(password, confirmPassword);
         if (!validEmail || !validName || !validPassword) return;
 
@@ -95,11 +99,31 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 mAuthProgressDialog.dismiss();
                 if (task.isSuccessful()){
                     Log.d(TAG,"Authentication Successful");
+                    createFirebaseUserProfile(task.getResult().getUser());
                 }else{
                     Toast.makeText(CreateAccountActivity.this, "Authentication Failed", Toast.LENGTH_SHORT);
                 }
             }
         });
+    }
+
+    private void createFirebaseUserProfile(final FirebaseUser user) {
+
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(mName)
+                .build();
+
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
+                        }
+                    }
+
+                });
     }
     //Now lets incorporate the progress dialog
 

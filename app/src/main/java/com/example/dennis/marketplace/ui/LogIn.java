@@ -68,6 +68,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         };
 
         //Initialize the prograss bar
+
         createAuthProgressDialog();
 
     }
@@ -91,11 +92,11 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
         //Check the credentials
         if (email.equals("")){
-            myEmail.setText("PLease enter the email");
+            myEmail.setText("Please enter the email");
             return;
         }
         if(myPassword.equals("")){
-            thisPassword.setText("PLease enter the password");
+            thisPassword.setText("Please enter the password");
             return;
         }
         mAuthProgressDialog.show();
@@ -119,5 +120,18 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         mAuthProgressDialog.setTitle("Loading...");
         mAuthProgressDialog.setMessage("Logging you in");
         mAuthProgressDialog.setCancelable(false);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }
