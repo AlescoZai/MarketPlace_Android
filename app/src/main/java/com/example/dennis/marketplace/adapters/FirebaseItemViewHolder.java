@@ -25,10 +25,16 @@ import java.util.ArrayList;
 /**
  * Created by dennis on 9/22/17.
  */
+/*
+*Here we are goingf to attach the onDRag listener to our project
+* This will be simply be used to drag our things
+ */
 
 public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
+
+    public ImageView mItemImageView;
 
     View mView;
     Context mContext;
@@ -42,6 +48,7 @@ public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements V
 
     //Lets bind the items
     public void bindItems(Market market){
+        mItemImageView = mView.findViewById(R.id.itemImageView);
         ImageView itemImageView = mView.findViewById(R.id.itemImageView);
         TextView nameTextView = mView.findViewById(R.id.itemNameTextView);
         TextView priceTextView = mView.findViewById(R.id.priceTextView);
@@ -50,7 +57,7 @@ public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements V
                 .load(market.getImage())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
-                .into(itemImageView);
+                .into(mItemImageView);
 
         nameTextView.setText(market.getName());
         priceTextView.setText(market.getSalePrice());

@@ -1,6 +1,9 @@
 package com.example.dennis.marketplace.adapters;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.example.dennis.marketplace.models.Market;
 import com.example.dennis.marketplace.util.ItemTouchHelperAdapter;
@@ -39,7 +42,16 @@ public class FirebaseItemListAdapter extends FirebaseRecyclerAdapter<Market, Fir
     }
 //This will be the one to populate our view holder
     @Override
-    protected void populateViewHolder(FirebaseItemViewHolder viewHolder, Market model, int position) {
+    protected void populateViewHolder(final FirebaseItemViewHolder viewHolder, Market model, int position) {
         viewHolder.bindItems(model);
+        viewHolder.mItemImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mOnStartDragListener.onStartDrag(viewHolder);
+                }
+                return false;
+            }
+        });
     }
 }
