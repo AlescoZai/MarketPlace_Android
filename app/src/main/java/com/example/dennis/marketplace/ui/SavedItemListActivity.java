@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +37,7 @@ public class SavedItemListActivity extends AppCompatActivity implements OnStartD
 
         ButterKnife.bind(this);
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
@@ -52,14 +54,16 @@ public class SavedItemListActivity extends AppCompatActivity implements OnStartD
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mMarketReference = FirebaseDatabase
+        Query query= FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_ITEM)
-                .child(uid);
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
+
 
 
         mFirebaseAdapter = new FirebaseItemListAdapter(Market.class, R.layout.item_list_item_drag, FirebaseItemViewHolder.class,
-                mMarketReference, this, this) {
+                query, this, this) {
 
             @Override
             protected void populateViewHolder(FirebaseItemViewHolder viewHolder,
