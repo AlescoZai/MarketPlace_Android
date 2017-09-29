@@ -45,7 +45,7 @@ public class SavedItemListActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Market, FirebaseItemViewHolder>
-                (Market.class, R.layout.item_list_item, FirebaseItemViewHolder.class,
+                (Market.class, R.layout.item_list_item_drag, FirebaseItemViewHolder.class,
                         mMarketReference){
 
             @Override
