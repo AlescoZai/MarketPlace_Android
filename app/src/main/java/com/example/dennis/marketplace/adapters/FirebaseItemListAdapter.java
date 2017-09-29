@@ -1,11 +1,13 @@
 package com.example.dennis.marketplace.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.dennis.marketplace.models.Market;
+import com.example.dennis.marketplace.ui.MarketDetailActivity;
 import com.example.dennis.marketplace.util.ItemTouchHelperAdapter;
 import com.example.dennis.marketplace.util.OnStartDragListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -14,6 +16,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,5 +102,30 @@ public class FirebaseItemListAdapter extends FirebaseRecyclerAdapter<Market, Fir
                 return false;
             }
         });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MarketDetailActivity.class);
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                intent.putExtra("restaurants", Parcels.wrap(mMarket));
+                mContext.startActivity(intent);
+            }
+        });
+    }
+
+    private void setIndexInFirebase() {
+        for (Market market : mMarket) {
+            int index = mMarket.indexOf(market);
+            DatabaseReference ref = getRef(index);
+            market.setIndex(Integer.toString(index));
+            ref.setValue(market);
+        }
+    }
+    @Override
+    public void cleanup() {
+        super.cleanup();
+        setIndexInFirebase();
+        mRef.removeEventListener(mChildEventListener);
     }
 }

@@ -1,26 +1,14 @@
 package com.example.dennis.marketplace.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.dennis.marketplace.Constants;
 import com.example.dennis.marketplace.R;
 import com.example.dennis.marketplace.models.Market;
-import com.example.dennis.marketplace.ui.MarketDetailActivity;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import org.parceler.Parcels;
-
-import java.util.ArrayList;
 
 /**
  * Created by dennis on 9/22/17.
@@ -30,7 +18,7 @@ import java.util.ArrayList;
 * This will be simply be used to drag our things
  */
 
-public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseItemViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
@@ -43,7 +31,7 @@ public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements V
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
+        //itemView.setOnClickListener(this);
     }
 
     //Lets bind the items
@@ -62,7 +50,7 @@ public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements V
         nameTextView.setText(market.getName());
         priceTextView.setText(market.getSalePrice());
     }
-
+/*
     @Override
     public void onClick(View view) {
         final ArrayList<Market> items = new ArrayList<>();
@@ -89,4 +77,5 @@ public class FirebaseItemViewHolder extends RecyclerView.ViewHolder implements V
             }
         });
     }
+    */
 }
