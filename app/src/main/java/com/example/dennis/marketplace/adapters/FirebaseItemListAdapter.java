@@ -31,14 +31,17 @@ public class FirebaseItemListAdapter extends FirebaseRecyclerAdapter<Market, Fir
         mContext = context;
     }
 //This stores  our X and Y coordinates on the position of our drag
+    //Notifies what will happen to the item once it is moved in the firebase
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        //Notify that the data adapter has changed
+        notifyItemMoved(fromPosition, toPosition);
         return false;
     }
 
     @Override
     public void onItemDismiss(int position) {
-
+        getRef(position).removeValue();
     }
 //This will be the one to populate our view holder
     @Override
